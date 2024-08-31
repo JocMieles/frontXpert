@@ -1,0 +1,125 @@
+src/
+app/
+core/ // Módulo para servicios centrales, guards, etc.
+guards/
+auth.guard.ts
+auth.guard.spec.ts // Prueba unitaria para el guard
+interceptors/
+http.interceptor.ts
+http.interceptor.spec.ts // Prueba unitaria para el interceptor
+services/
+auth.service.ts
+auth.service.spec.ts // Prueba unitaria para el servicio
+shared/ // Módulo para componentes y servicios compartidos
+components/
+header.component.ts
+header.component.spec.ts // Prueba unitaria para el componente
+directives/
+highlight.directive.ts
+highlight.directive.spec.ts // Prueba unitaria para la directiva
+pipes/
+filter.pipe.ts
+filter.pipe.spec.ts // Prueba unitaria para el pipe
+features/ // Módulo para las vistas principales
+breed-carousel/ // Vista 1: Carrusel de imágenes y detalles
+breed-carousel.component.ts
+breed-carousel.component.spec.ts // Prueba unitaria para el componente
+breed-table/ // Vista 2: Tabla con búsqueda
+breed-table.component.ts
+breed-table.component.spec.ts // Prueba unitaria para el componente
+auth/ // Vistas 3 y 4: Login y Registro
+login.component.ts
+login.component.spec.ts // Prueba unitaria para el componente
+register.component.ts
+register.component.spec.ts // Prueba unitaria para el componente
+protected/ // Vista 5: Información de usuario
+user-info.component.ts
+user-info.component.spec.ts // Prueba unitaria para el componente
+...
+app-routing.module.ts
+app.module.ts
+
+
+
+src/
+├── app/
+│   ├── core/                      // Módulo para servicios centrales, guards, etc.
+│   │   ├── guards/
+│   │   │   ├── auth.guard.ts
+│   │   │   ├── auth.guard.spec.ts
+│   │   ├── interceptors/
+│   │   │   ├── http.interceptor.ts
+│   │   │   ├── http.interceptor.spec.ts
+│   │   ├── services/
+│   │       ├── auth.service.ts
+│   │       ├── auth.service.spec.ts
+│   │       ├── api.service.ts
+│   │       ├── api.service.spec.ts
+│   ├── shared/                    // Módulo para componentes y servicios compartidos
+│   │   ├── components/
+│   │   │   ├── header.component.ts
+│   │   │   ├── header.component.spec.ts
+│   │   ├── directives/
+│   │   │   ├── highlight.directive.ts
+│   │   │   ├── highlight.directive.spec.ts
+│   │   ├── pipes/
+│   │       ├── filter.pipe.ts
+│   │       ├── filter.pipe.spec.ts
+│   ├── features/                  // Módulo para las vistas principales
+│   │   ├── breed-carousel/        // Vista 1: Carrusel de imágenes y detalles
+│   │   │   ├── breed-carousel.component.ts
+│   │   │   ├── breed-carousel.component.html
+│   │   │   ├── breed-carousel.component.css
+│   │   │   ├── breed-carousel.component.spec.ts
+│   │   ├── breed-table/           // Vista 2: Tabla con búsqueda
+│   │   │   ├── breed-table.component.ts
+│   │   │   ├── breed-table.component.html
+│   │   │   ├── breed-table.component.css
+│   │   │   ├── breed-table.component.spec.ts
+│   │   ├── auth/                  // Vistas 3 y 4: Login y Registro
+│   │   │   ├── login/
+│   │   │   │   ├── login.component.ts
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.css
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   ├── register/
+│   │   │       ├── register.component.ts
+│   │   │       ├── register.component.html
+│   │   │       ├── register.component.css
+│   │   │       ├── register.component.spec.ts
+│   │   ├── protected/             // Vista 5: Información de usuario
+│   │   │   ├── user-info.component.ts
+│   │   │   ├── user-info.component.html
+│   │   │   ├── user-info.component.css
+│   │   │   ├── user-info.component.spec.ts
+│   ├── app-routing.module.ts
+│   ├── app.module.ts
+├── assets/                        // Imágenes y otros recursos estáticos
+│   ├── images/
+│   │   ├── logo.png
+├── environments/                  // Configuración de entornos (prod, dev, etc.)
+│   ├── environment.prod.ts
+│   ├── environment.ts
+├── styles/                        // Archivos de estilos globales
+│   ├── global-styles.css
+
+
+
+src/
+├── app/
+│   ├── core/          // Módulo para servicios centrales, guards, etc.
+│   │   ├── guards/
+│   │   ├── interceptors/
+│   │   └── services/
+│   ├── shared/        // Módulo para componentes y servicios compartidos
+│   │   ├── components/
+│   │   ├── directives/
+│   │   └── pipes/
+│   ├── features/      // Módulo para las vistas principales
+│   │   ├── breed-carousel/  // Vista 1: Carrusel de imágenes y detalles
+│   │   ├── breed-table/     // Vista 2: Tabla con búsqueda
+│   │   ├── auth/            // Vistas 3 y 4: Login y Registro
+│   │   └── protected/       // Vista 5: Información de usuario
+│   └── app-routing.module.ts
+└── assets/            // Imágenes y otros recursos estáticos
+
