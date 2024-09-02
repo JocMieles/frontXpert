@@ -8,11 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class BreedsService {
 
-  private apiUrl = 'http://localhost:3000/api'; // Reemplaza con la URL de tu API
+  private apiUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
 
   breeds(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/breeds`);
+  }
+
+  breedId(breedId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/breeds/${breedId}`);
+  }
+
+  breedSearch(breed: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/breeds/search?q=${breed}`);
   }
 
   imagesBreed(breed: string): Observable<any> {

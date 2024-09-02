@@ -1,33 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/api'; // Reemplaza con la URL de tu API
+  private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<{token: string, user: any}> {
     return this.http.post<any>(`${this.apiUrl}/users/login`, { email, password })
       .pipe(
         tap(response => {
-          if (response && response.token) {
-            this.setToken(response.token);  // Almacena el token
+          if(response && response.token && response.user) {
+            const token = response.token;
+            this.setToken(token.toString());
+            this.setUser(response.user)
           }
-        })
+        },
+        error => console.log(error)
+      )
       );
   }
 
+  setUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+  getUserInfo(): any {
+    return JSON.parse(localStorage.getItem('user') || '{}');
+  }
   logout() {
-    localStorage.removeItem('token');  // Remueve el token del almacenamiento local
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');  // Verifica si hay un token
+    return !!localStorage.getItem('token'); 
   }
 
   register(user: any): Observable<any> {
@@ -35,10 +46,12 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');  // Recupera el token del almacenamiento local
+    return localStorage.getItem('token');
   }
 
   private setToken(token: string): void {
-    localStorage.setItem('token', token);  // Almacena el token en el almacenamiento local
+    console.log(token);
+    localStorage.setItem('token', token);
+    console.log(localStorage)
   }
 }

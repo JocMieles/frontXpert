@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,7 +16,7 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder,
-    private authService: AuthService,  // Inyectar el servicio de autenticación
+    private authService: AuthService,
     private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,14 +29,10 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe({
           next: (response) => {
-            console.log('Login successful', response);
-            // Guardar el token en el almacenamiento local o en las cookies
-            localStorage.setItem('token', response.token);
-            // Redirigir a una página protegida
+            console.log(response)
             this.router.navigate(['/menu']);
           },
           error: (error) => {
-            console.error('Login failed', error);
             this.errorMessage = 'Email o contraseña incorrectos';
           }
         });
@@ -45,7 +40,6 @@ export class LoginComponent {
   }
 
   goToRegister() {
-    console.log(this.router)
     this.router.navigate(['/login/register']);
   }
 }

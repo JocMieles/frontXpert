@@ -1,1 +1,24 @@
-<p>carousel works!</p>
+<div class="hero-section">
+    <h2>Lista de Razas</h2>
+    <div class="hero-text">
+      
+      <select class="breed-select" (change)="selectBreed($event.target)">
+        <option value="">Seleccione una raza</option>
+        <option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</option>
+      </select>
+      <table *ngIf="selectedBreed" >
+        <tr><th>Nombre</th><td>{{ selectedBreed.name }}</td></tr>
+        <tr><th>Origen</th><td>{{ selectedBreed.origin }}</td></tr>
+        <tr><th>Esperanza de vida</th><td>{{ selectedBreed.life_span }} años</td></tr>
+        <tr><th>Temperamento</th><td>{{ selectedBreed.temperament }}</td></tr>
+      </table>
+    </div>
+    <div class="carousel-wrapper" *ngIf="selectedBreed">
+      <carousel class="carouselContent">
+        <slide *ngFor="let img of images">
+          <img [src]="img.url" alt="Imagen de carrusel" class="carousel-img">
+        </slide>
+      </carousel>
+    </div>
+  </div>
+

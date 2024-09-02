@@ -1,19 +1,19 @@
-<div class="menu-container">
+<div class="menu-container" (click)="closeDropdown()">
   <header class="menu-header">
     <div class="logo">
-      <h1>BREEDS</h1>
+      <h1 (click)="navigateToHome()">BREEDS</h1>
     </div>
     <nav class="menu-nav">
       <ul class="menu-tabs">
-        <li><a routerLink="/carousel" routerLinkActive="active">Carousel</a></li>
-        <li><a routerLink="/table" routerLinkActive="active">Table</a></li>
+        <li><a routerLink="/carousel" routerLinkActive="active">Carrusel</a></li>
+        <li><a routerLink="/table" routerLinkActive="active">Tabla</a></li>
       </ul>
-      <div class="user-menu">
+      <div class="user-menu" (click)="$event.stopPropagation()">
         <button class="user-icon" (click)="toggleUserMenu()">
           <i class="fas fa-user"></i>
         </button>
         <div class="user-dropdown" *ngIf="isUserMenuOpen">
-          <p>{{ userEmail }}</p>
+          <div class="user-email"><p>{{ user.email }}</p></div>
           <a (click)="openModal()">Perfil</a>
           <button (click)="logout()">Logout</button>
         </div>
@@ -21,41 +21,16 @@
     </nav>
   </header>
   
-  <div class="hero-section">
-    <div class="hero-text">
-      <h2>Lista de Razas</h2>
-    <select class="breed-select" (change)="selectBreed($event.target)">
-      <option value="">Seleccione una raza</option>
-      <option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</option>
-    </select>
-    <table *ngIf="selectedBreed">
-      <tr><th>Nombre</th><td>{{ selectedBreed.name }}</td></tr>
-      <!-- <tr><th>Peso</th><td>{{ selectedBreed.weight.metric }} kg</td></tr> -->
-      <tr><th>Origen</th><td>{{ selectedBreed.origin }}</td></tr>
-      <tr><th>Esperanza de vida</th><td>{{ selectedBreed.life_span }} años</td></tr>
-      <tr><th>Temperamento</th><td>{{ selectedBreed.temperament }}</td></tr>
-      <!-- <tr><th>Nivel de energía</th><td>{{ selectedBreed.energy_level }}</td></tr>
-      <tr><th>Inteligencia</th><td>{{ selectedBreed.intelligence }}</td></tr>
-      <tr><th>Amigable con perros</th><td>{{ selectedBreed.dog_friendly }}</td></tr>
-      <tr><th>Amigable con extraños</th><td>{{ selectedBreed.stranger_friendly }}</td></tr>
-      <tr><th>Hipoalergénico</th><td>{{ selectedBreed.hypoallergenic ? 'Sí' : 'No' }}</td></tr> -->
-    </table>
-    </div>
-    <div class="carousel-wrapper">
-      <carousel>
-        <slide *ngFor="let img of images">
-          <img [src]="img.url" alt="Imagen de carrusel" class="carousel-img">
-        </slide>
-      </carousel>
-    </div>
-  </div>
-
+  
   <div class="menu-content">
     <router-outlet></router-outlet>
+    <div class="welcome-message" *ngIf="!isCarouselOrTableRoute">
+      <h1>Bienvenidos</h1>
+      <p>Explora nuestras razas de gatos y encuentra la perfecta para ti en Carrusel y la Tabla.</p>
+    </div>
   </div>
 </div>
 
-<!-- Modal -->
 <div class="modal-backdrop" *ngIf="isModalOpen" (click)="closeModal()"></div>
 <div class="modal-dialog" *ngIf="isModalOpen">
   <div class="modal-content">

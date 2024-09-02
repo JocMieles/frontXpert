@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {
-    console.log('interceptor11');
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('interceptor');
     const authToken = this.authService.getToken();
+    console.log(authToken)
 
     const authReq = req.clone({
       setHeaders: {
@@ -19,6 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 403) {
+          console.error('Token expirado o no autorizado');
+          this.authService.logout();
+        }
+        return throwError(error);
+      })
+    );
   }
 }

@@ -9,22 +9,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
   background-color: #333;
-  padding: 20px;
   color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1000;
 }
 
 .logo h1 {
   font-size: 1.5rem;
   color: #fff;
   margin: 0;
+  margin-right: 10px;
 }
 
 .menu-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
 }
 
 .menu-tabs {
@@ -68,7 +72,7 @@
 .user-dropdown {
   position: absolute;
   right: 0;
-  top: 100%;
+  top: 110%;
   background-color: #fff;
   color: #333;
   padding: 10px;
@@ -78,13 +82,24 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 200px;
+  width: 220px;
+}
+
+.user-email{
+  border-bottom: #838181 1px solid;
+  width: 100%;
 }
 
 .user-dropdown p {
   margin: 0;
   font-weight: bold;
   font-size: 14px;
+}
+.welcome-message{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .user-dropdown a,
@@ -109,7 +124,6 @@
   color: #ff6347;
 }
 
-/* Estilos del Modal */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -161,96 +175,37 @@
   padding: 20px 0;
 }
 
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrar horizontalmente */
-  justify-content: center; /* Centrar verticalmente si es necesario */
-  width: 60%; /* Ajusta este valor según el ancho que desees */
-  margin: 0 auto; /* Centra horizontalmente en la pantalla */
-  padding: 20px;
-}
 
-.hero-text {
-  text-align: center; /* Centrar el texto dentro del contenedor */
-}
-
-.carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-inner img {
-  width: 100%;
-  height: auto;
-  max-height: 300px; /* Ajusta la altura máxima de las imágenes */
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80%; /* Ajusta el ancho según sea necesario */
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.hero-text {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-inner img {
-  width: 100%;
-  height: auto;
-  max-height: 250px; /* Reduce la altura para hacer las imágenes más pequeñas */
-  max-width: 250px; /* Asegura que las imágenes sean cuadradas */
-  object-fit: cover; /* Mantiene las imágenes cuadradas, cortando partes si es necesario */
-  border-radius: 10px;
-}
-
-.carousel-img{
-  max-height: 500px;
-  max-width: 500px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Responsivo */
 @media (max-width: 768px) {
-  .hero-section {
-    width: 95%; /* Aumenta el ancho en pantallas más pequeñas */
+  .user-dropdown {
+    width: 150px;
+    padding: 8px;
   }
 
-  .carousel-inner img {
-    max-height: 150px; /* Reduce la altura aún más en pantallas más pequeñas */
-    max-width: 150px; /* Asegura que las imágenes sean más pequeñas y cuadradas */
+  .user-email {
+    font-size: 12px;
+  }
+
+  .user-dropdown a,
+  .user-dropdown button {
+    font-size: 12px;
+    padding: 6px 0;
   }
 }
 
 @media (max-width: 480px) {
-  .carousel-inner img {
-    max-height: 100px; /* Tamaño aún más pequeño para pantallas móviles */
-    max-width: 100px;
+  .user-dropdown {
+    width: 120px;
+    padding: 5px;
+  }
+
+  .user-email {
+    font-size: 12px;
+  }
+
+  .user-dropdown a,
+  .user-dropdown button {
+    font-size: 12px;
+    padding: 5px 0;
   }
 }

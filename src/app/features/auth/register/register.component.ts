@@ -21,12 +21,10 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    console.log('test')
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      //this.authService.register(this.registerForm.value);
       this.authService.register(this.registerForm.value)
         .subscribe({
           next: (response) => {
@@ -39,7 +37,6 @@ export class RegisterComponent {
           }
         });
       console.log('Register form submitted', this.registerForm.value);
-      // Here you would typically call your registration service
     }
   }
 

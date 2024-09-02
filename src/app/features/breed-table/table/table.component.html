@@ -1,1 +1,30 @@
-<p>table works!</p>
+<div class="table-container">
+    <h2>Tabla de Razas</h2>
+    <input 
+      type="text" 
+      placeholder="Buscar raza..." 
+      [(ngModel)]="searchText" 
+      class="search-input"
+    />
+    <button (click)="onSearch()">Buscar</button>
+  
+    <table *ngIf="filteredBreeds.length > 0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Origen</th>
+          <th>Esperanza de vida</th>
+          <th>Temperamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let breed of filteredBreeds">
+          <td>{{ breed.name }}</td>
+          <td>{{ breed.origin }}</td>
+          <td>{{ breed.life_span }} años</td>
+          <td>{{ breed.temperament }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
